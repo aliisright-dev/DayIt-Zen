@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+body {
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.zen {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: green;
+  font-size: 200%;
+}
+
+/*--semaine.blade.php--*/
+
+.day-card {
+  background-color: rgba(F,F,F,0.5);
+  height: 150px;
+  width: 150px;
+  border: 0.5px solid grey;
+  box-shadow: 0px 1px 4px black;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-group a {
+  text-decoration: none;
+}
+
+.card-group a:hover {
+  position: relative;
+  bottom: 5px;
+}
+
+.day-num {
+  font-weight: 900;
+  font-size: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: white;
+}
+
+.month {
+  color: white;
+  font-size: 50px;
+  text-shadow: 0px 0px 3px white;
+}
+
+.day-title {
+  font-size: 70px;
+  color: white;
+  text-shadow: 0px 0px 3px white;
+}
+
+.message-title {
+  font-size: 40px;
+  color: white;
+  text-shadow: 0px 0px 3px white;
+}
+
+.message-card {
+  text-align: center;
+  font-size: 12px;
+  color: black;
+
+}
+
+.form-header {
+  background-image: url(../images/background.jpg);
+}
+
+.calendar-edit-form {
+  width: 70%;
+}
+
+.modal-body-day-form {
+  display: flex;
+  justify-content: center;
+}
+
+.color-card {
+  height: 30px;
+  width:30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.form-check {
+  display: inline-flex;
+}
+
+/*--register.blade.php--*/
+
+
+
