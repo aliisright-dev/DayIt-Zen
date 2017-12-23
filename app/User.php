@@ -28,10 +28,14 @@ class User extends Authenticatable
     ];
 
     public function day() {
-        return $this->hasMany('App\Day', 'user_id');
+        return $this->hasMany('App\Day');
     }
 
     public function image() {
-        return $this->hasMany('App\Image', 'user_id');
+        return $this->hasMany('App\Image');
+    }
+
+    public function task() {
+        return $this->hasMany('App\Task');
     }
 }

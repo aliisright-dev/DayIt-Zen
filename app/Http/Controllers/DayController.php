@@ -9,6 +9,7 @@ use App\Day;
 use App\User;
 use App\Image;
 use App\Color;
+use App\Task;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
@@ -17,13 +18,15 @@ use Illuminate\Http\Response;
 
 class DayController extends Controller
 {
-    public function show() {
+    public function showCalendar() {
 
       $colors = Color::All();
 
       $days = Day::All()->where('user_id', Auth::User()->id);
 
-      return view('calendar', ['days' => $days, 'colors' => $colors]);
+      $tasks = Task::All();
+
+      return view('calendar', ['days' => $days, 'colors' => $colors, 'tasks' => $tasks]);
 
     }
 
@@ -80,5 +83,16 @@ class DayController extends Controller
 
       return redirect()->Route('days.show');
 
+    }
+
+    public function deleteMessage($dayId) {
+
+      $deleteDayMessage = Day::where('day', $dayId)->first();
+
+      $deleteDayMessage->message = null;
+
+      $deleteDayMessage->save();
+
+      return redirect()->back();
     }
 }

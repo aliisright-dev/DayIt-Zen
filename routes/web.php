@@ -26,7 +26,7 @@ Route::get('/createUserDays', [
 ]);
 
 Route::get('/calendar', [
-  'uses' => 'DayController@show',
+  'uses' => 'DayController@showCalendar',
   'as' => 'days.show',
   'middleware' => 'auth'
 ]);
@@ -36,3 +36,35 @@ Route::post('/day.edit', [
   'as' => 'day.edit',
   'middleware' => 'auth'
 ]);
+
+Route::post('/task.add', [
+  'uses' => 'TaskController@addTask',
+  'as' => 'task.add',
+  'middleware' => 'auth'
+]);
+
+Route::post('/task.delete', [
+  'uses' => 'TaskController@deleteTask',
+  'as' => 'task.delete',
+  'middleware' => 'auth'
+]);
+
+Route::post('/task.modify', [
+  'uses' => 'TaskController@modifyTask',
+  'as' => 'task.modify',
+  'middleware' => 'auth'
+]);
+
+Route::post('/task.status', [
+  'uses' => 'TaskController@statusTask',
+  'as' => 'task.status',
+  'middleware' => 'auth'
+]);
+
+Route::get('/cardtitle.delete/{dayId}', [
+  'uses' => 'DayController@deleteMessage',
+  'as' => 'cardtitle.delete',
+  'middleware' => 'auth'
+]);
+
+
