@@ -18,7 +18,7 @@
 @section('content')
 <section class="container">
     <div>
-        <h2 class="month">Decembre</h2>
+        <h2 class="month">{{$calendar->month->name}}</h2>
     </div>
 
         <div class="container">
@@ -41,14 +41,15 @@
 
                                 <div class="col-md-5">
                                       <div class="modal-header form-header">
-                                        <h1 class="modal-title day-title" id="exampleModalLabel">Jour {{ $day->day }}</h1>
+                                        <h1 class="modal-title day-title" id="exampleModalLabel">Jour {{ $day->day }} <span class="month-title"><i>{{$calendar->month->name}}</i></span></h1>
+                                        <hr>
                                         <h4 class="message-title">{{$day->message}}</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
 
-                                      <img src="{{isset($day->image->path) ? $day->image->path : '../resources/assets/images/no-photo.png' }}" width="100%" class="">
+                                      <img src="{{isset($day->image->path) ? $day->image->path : '/resources/assets/images/no-photo.png' }}" width="100%" class="">
 
                                     <div class="modal-body modal-body-day-form">
 
@@ -88,7 +89,7 @@
 
                             <div class="col-md-5">
                                 <div class="modal-header">
-                                    <h1 class="modal-title">Ma liste de tâches</h1>
+                                    <h1 class="modal-title">Ma To-Do-List</h1>
                                     <hr>
                                 <label class="" for="task">Ajouter une tâche!</label>
                                 <form class="row" method="POST" action="{{ Route('task.add') }}" enctype="multipart/form-data">
@@ -97,7 +98,7 @@
                                                 </div>
 
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="day" value="{{ $day->day }}">
+                                                <input type="hidden" name="day" value="{{ $day->id }}">
 
                                                 <div class="form-group col-md-4">
                                                     <button class="btn btn-success">Ajouter</button>
@@ -105,10 +106,10 @@
                                         </form>
                                         <ul class="list-group list-unstyled">
 
-                                                @foreach($day->task as $task)
+                                                @foreach($day->task->sortBy('done') as $task)
 
                                                     <li class="panel panel-heading">
-                                                        <div class="row"><p>{{$task->name}}</p><div>
+                                                        <div class="row"><p>{{$task->done == 0 ? '🕑' : '👍Réalisé' }} | {{$task->name}}</p><div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">📝</button>
@@ -124,7 +125,7 @@
                                                                     <form method="POST" action="{{ Route('task.status') }}" enctype="multipart/form-data">
                                                                         <input type="hidden" name="taskId" value="{{$task->id}}">
                                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                        <button class="btn btn-default">{{$task->done == 0 ? '✅' : '↩︎' }}</button>
+                                                                        <button class="btn btn-default">{{$task->done == 0 ? 'Fait! ✅' : 'Remettre ↩︎' }}</button>
                                                                     </form>
                                                                 </div>
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Calendar;
+use App\Month;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+          $months = Month::All();
+          $calendars = Calendar::All();
+
+          return view('home', ['months' => $months, 'calendars' => $calendars]);
+
     }
 }

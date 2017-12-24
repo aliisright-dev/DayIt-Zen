@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
 body {
-  background-image: url(../images/background.jpg);
+  background-image: url(/resources/assets/images/background.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -54,6 +54,12 @@ body {
 
 .day-title {
   font-size: 70px;
+  color: white;
+  text-shadow: 0px 0px 3px white;
+}
+
+.month-title {
+  font-size: 20px;
   color: white;
   text-shadow: 0px 0px 3px white;
 }

@@ -17,15 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/createUserDays', [
-  'uses' => 'UserController@createDays',
-  'as' => 'create.user.days',
+Route::get('/home', [
+  'uses' => 'HomeController@index',
+  'as' => 'show.home',
   'middleware' => 'auth'
 ]);
 
-Route::get('/calendar', [
+Route::post('/createUserCalendar', [
+  'uses' => 'CalendarController@createCalendar',
+  'as' => 'create.calendar',
+  'middleware' => 'auth'
+]);
+
+Route::get('/calendar/{year}/{monthId}', [
   'uses' => 'DayController@showCalendar',
   'as' => 'days.show',
   'middleware' => 'auth'

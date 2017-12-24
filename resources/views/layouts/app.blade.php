@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../resources/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/assets/css/style.css">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ route('days.show') }}">Calendrier</a></li>
+                                    <li><a href="{{route('show.home')}}">Home</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

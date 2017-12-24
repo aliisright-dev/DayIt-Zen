@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Task;
 use App\User;
+use App\Day;
 
 class TaskController extends Controller
 {

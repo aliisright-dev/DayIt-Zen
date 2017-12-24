@@ -10,6 +10,7 @@ use App\User;
 use App\Image;
 use App\Color;
 use App\Task;
+use App\Calendar;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
@@ -18,15 +19,16 @@ use Illuminate\Http\Response;
 
 class DayController extends Controller
 {
-    public function showCalendar() {
+    public function showCalendar($year, $monthId) {
 
       $colors = Color::All();
 
-      $days = Day::All()->where('user_id', Auth::User()->id);
+      $calendar = Calendar::where('month_id', $monthId)->where('year', $year)->first();
 
-      $tasks = Task::All();
+      $days = Day::where('calendar_id', $calendar->id)->get();
 
-      return view('calendar', ['days' => $days, 'colors' => $colors, 'tasks' => $tasks]);
+
+      return view('calendar', ['days' => $days, 'colors' => $colors, 'calendar' => $calendar]);
 
     }
 
@@ -45,7 +47,7 @@ class DayController extends Controller
             $entry = new Image();
             $entry->mime = $file->getClientMimeType();
             $entry->name = $file->getFilename().'.'.$extension;
-            $entry->path = "../storage/app/public/".$entry->name;
+            $entry->path = "/storage/app/public/".$entry->name;
             $entry->user_id = Auth::user()->id;
 
             $entry->save();
@@ -81,7 +83,7 @@ class DayController extends Controller
 
 
 
-      return redirect()->Route('days.show');
+      return redirect()->back();
 
     }
 

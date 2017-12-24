@@ -18,6 +18,10 @@ class Day extends Model
       return $this->belongsTo('App\Image', 'image_id', 'id');
   }
 
+  public function calendar() {
+      return $this->belongsTo('App\Calendar', 'calendar_id', 'id');
+  }
+
   public function task() {
       return $this->hasMany('App\Task');
   }

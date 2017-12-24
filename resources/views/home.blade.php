@@ -2,22 +2,34 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div>
+        <form class="row" method="POST" action="{{ Route('create.calendar') }}" enctype="multipart/form-data">
+            <input type="number" name="year" value="2017">
+            <select name="month">
+                @foreach($months as $month)
+                <option value="{{$month->id}}">{{$month->name}}</option>
+                @endforeach
+            </select>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button>Ajouter un calendrier</button>
+        </form>
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+        <ul>
+            @foreach($calendars as $calendar)
+                <a href="{{ route('days.show', ['year' => $calendar->year, 'monthId' => $calendar->month_id]) }}"><li>{{$calendar->month->name}} {{$calendar->year}}</li></a>
+            @endforeach
+        </ul>
+
+
+
+        <!-- <button>Ajouter une To-Do-List</button> -->
+    </div>
+
+
+
+
+
     </div>
 </div>
 @endsection
