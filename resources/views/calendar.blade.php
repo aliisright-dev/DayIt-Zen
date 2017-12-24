@@ -78,7 +78,7 @@
                                                 </div>
 
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="day" value="{{ $day->day }}">
+                                                <input type="hidden" name="day" value="{{ $day->id }}">
 
                                                 <div class="form-group text-center">
                                                     <button class="btn btn-success">Appliquer</button>

@@ -52,7 +52,7 @@ class DayController extends Controller
 
             $entry->save();
 
-            $newImageId = Day::where('day', '=', $request->input('day'))->first();
+            $newImageId = Day::where('id', '=', $request->input('day'))->first();
             $newImageId->image_id = $entry->id;
 
             $newImageId->save();
@@ -63,7 +63,7 @@ class DayController extends Controller
 
             $color = $request->input('color');
 
-            $newColor = Day::where('day', '=', $request->input('day'))->first();
+            $newColor = Day::where('id', '=', $request->input('day'))->first();
             $newColor->color_id = $color;
 
             $newColor->save();
@@ -74,7 +74,7 @@ class DayController extends Controller
 
             $message = $request->input('message');
 
-            $newMessage = Day::where('day', '=', $request->input('day'))->first();
+            $newMessage = Day::where('id', '=', $request->input('day'))->first();
             $newMessage->message = $message;
 
             $newMessage->save();
@@ -89,7 +89,7 @@ class DayController extends Controller
 
     public function deleteMessage($dayId) {
 
-      $deleteDayMessage = Day::where('day', $dayId)->first();
+      $deleteDayMessage = Day::where('id', $dayId)->first();
 
       $deleteDayMessage->message = null;
 

@@ -50,6 +50,6 @@ class CalendarController extends Controller
     }
 
 
-    return redirect()->route('days.show');
+    return redirect()->route('show.home');
   }
 }
