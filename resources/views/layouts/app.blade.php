@@ -55,6 +55,7 @@
 
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('show.home')}}">Home</a></li>
+                                    <li><a href="{{route('show.office')}}">Office</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

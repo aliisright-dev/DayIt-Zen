@@ -42,4 +42,13 @@ class User extends Authenticatable
     public function calendar() {
         return $this->hasMany('App\Calendar');
     }
+
+    public function user() {
+        return $this->hasMany('App\RequestModel', 'user_id', 'id');
+    }
+
+    public function friend() {
+        return $this->hasMany('App\RequestModel', 'friend_id', 'id');
+    }
+
 }

@@ -3,29 +3,45 @@
 @section('content')
 <div class="container">
 
-    <div>
-        <form class="row" method="POST" action="{{ Route('create.calendar') }}" enctype="multipart/form-data">
-            <input type="number" name="year" value="2017">
-            <select name="month">
-                @foreach($months as $month)
-                <option value="{{$month->id}}">{{$month->name}}</option>
-                @endforeach
-            </select>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button>Ajouter un calendrier</button>
-        </form>
-
-        <ul>
-            @foreach($calendars as $calendar)
-                <a href="{{ route('days.show', ['year' => $calendar->year, 'monthId' => $calendar->month_id]) }}"><li>{{$calendar->month->name}} {{$calendar->year}}</li></a>
+    <div class="row">
+        <div class="panel panel-default panel-heading col-md-2 col-sm-6">
+            <h3>USERS</h3>
+            @foreach($reqUsers as $reqUser)
+                <p>{{$reqUser->name}}   <i>demande en attente</i></p><br>
             @endforeach
-        </ul>
+            <hr>
+            @foreach($friends as $friend)
+                <p>{{$friend->name}}   <i>ami</i></p><br>
+            @endforeach
+            <hr>
+            @foreach($noReqUsers as $noReqUser)
+                <p>{{$noReqUser->name}}   <a href="{{route('request.friend', ['friendId' => $noReqUser->id])}}">add</a></p><br>
+                <hr>
+            @endforeach
+        </div>
+        <div class="panel panel-default panel-heading col-md-8 col-sm-12">
+            <h1>What's up {{Auth::user()->name}}!</h1>
+        </div>
 
+        <div class="panel panel-default panel-heading col-md-2 col-sm-6">
+            <div class="panel panel-default panel-heading">
+                <h3>REQUESTS</h3>
+                @foreach($fRequests as $fRequest)
 
+                        <p>{{$fRrequest->name}}   <a href="{{route('accept.friend', ['friendId' => $fRequest->id])}}">Accept</a>    <a href="{{route('remove.request', ['friendId' => $request->id])}}">NON</a></p><br>
 
-        <!-- <button>Ajouter une To-Do-List</button> -->
+                @endforeach
+            </div>
+            <div class="panel panel-default panel-heading">
+                <h3>FRIENDS</h3>
+                @foreach($friends as $friend)
+
+                        <p>{{$friend->name}}</p>
+
+                @endforeach
+            </div>
+        </div>
     </div>
-
 
 
 

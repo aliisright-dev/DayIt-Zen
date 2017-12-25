@@ -23,6 +23,12 @@ Route::get('/home', [
   'middleware' => 'auth'
 ]);
 
+Route::get('/office', [
+  'uses' => 'OfficeController@index',
+  'as' => 'show.office',
+  'middleware' => 'auth'
+]);
+
 Route::post('/createUserCalendar', [
   'uses' => 'CalendarController@createCalendar',
   'as' => 'create.calendar',
@@ -71,4 +77,22 @@ Route::get('/cardtitle.delete/{dayId}', [
   'middleware' => 'auth'
 ]);
 
+/////////////////////
 
+Route::get('/requestfriend/{friendId}', [
+  'uses' => 'UserController@requestFriend',
+  'as' => 'request.friend',
+  'middleware' => 'auth'
+]);
+
+Route::get('/acceptfriend/{friendId}', [
+  'uses' => 'UserController@acceptFriend',
+  'as' => 'accept.friend',
+  'middleware' => 'auth'
+]);
+
+Route::get('/removerequest/{friendId}', [
+  'uses' => 'UserController@removeRequest',
+  'as' => 'remove.request',
+  'middleware' => 'auth'
+]);
